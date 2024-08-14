@@ -14,6 +14,9 @@ public class DemoATM {
         System.out.print("Nhap vao password: ");
         String password1= scanner.nextLine();
         String answer;
+        //Quy tac dat ten bien : techmasterSchool
+        //class : Tu tieng anh co nghia , va la danh tu, TechmasterSchool
+        //packgae: viet thuon g het hoac cach nhau bang _ techmaster_service
         if(usename1.equals(username)&&password1.equals(password)){
             do {
 
