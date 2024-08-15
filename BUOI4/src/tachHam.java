@@ -3,7 +3,7 @@
 public class tachHam {
 
 
-    private int[][] nhapMang(int row, int column) {
+    private int[][] NhapMang(int row, int column) {
         int[][] arr = new int[row][column];
         Scanner scanner = new Scanner(System.in);
 
@@ -17,7 +17,7 @@ public class tachHam {
     }
 
 
-    private int[][] tinhTong(int[][][] arr, int row, int column) {
+    private int[][] TinhTong(int[][][] arr, int row, int column) {
         int[][] sum = new int[row][column];
 
         for (int k = 0; k < arr.length; k++) {
@@ -31,7 +31,7 @@ public class tachHam {
     }
 
 
-    private void inMang(int[][] arr, int row, int column) {
+    private void InMang(int[][] arr, int row, int column) {
         for (int i = 0; i < row; i++) {
             for (int j = 0; j < column; j++) {
                 System.out.print(arr[i][j] + " ");
@@ -48,7 +48,6 @@ public class tachHam {
         System.out.print("Nhap so mang: ");
         int soMang = Integer.parseInt(scanner.nextLine());
 
-
         int[][][] tongMang = new int[soMang][][];
         int[] rows = new int[soMang];
         int[] columns = new int[soMang];
@@ -60,10 +59,15 @@ public class tachHam {
             rows[i] = Integer.parseInt(scanner.nextLine());
             System.out.print("So cot: ");
             columns[i] = Integer.parseInt(scanner.nextLine());
+            if (rows[i] < 1 || columns[i] < 1) {
+                System.out.println("Ban da nhap sai ");
+            } else {
 
 
-            tongMang[i] = tachham.nhapMang(rows[i], columns[i]);
+                tongMang[i] = tachham.NhapMang(rows[i], columns[i]);
+            }
         }
+
 
 
         boolean sameSize = true;
@@ -75,17 +79,17 @@ public class tachHam {
         }
 
         if (sameSize) {
-            int[][] sumMang = tachham.tinhTong(tongMang, rows[0], columns[0]);
+            int[][] sumMang = tachham.TinhTong(tongMang, rows[0], columns[0]);
 
 
             for (int i = 0; i < soMang; i++) {
                 System.out.println("Mang thu " + (i + 1) + ":");
-                tachham.inMang(tongMang[i], rows[i], columns[i]);
+                tachham.InMang(tongMang[i], rows[i], columns[i]);
             }
 
 
             System.out.println("Mang tong la:");
-            tachham.inMang(sumMang, rows[0], columns[0]);
+            tachham.InMang(sumMang, rows[0], columns[0]);
         } else {
             System.out.println("Khong the tinh tong vi cac mang co kich thuoc khac nhau.");
         }
