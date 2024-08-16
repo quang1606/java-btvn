@@ -23,9 +23,9 @@ public class DemoATM {
                 System.out.println("Moi ban chon chuc nang!");
                 System.out.println("Chuc nang 1: xem thong tin TK ");
                 System.out.println("Chuc nang 2: Rut tien ");
-                int luachon= Integer.parseInt(scanner.nextLine());
+                int answer= Integer.parseInt(scanner.nextLine());
 
-                switch (luachon){
+                switch (answer){
                     case 1:
                         System.out.println("usename: "+usename1+" password: "+password1+"balance: "+balance);
                         break;
