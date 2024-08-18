@@ -1,54 +1,109 @@
 import java.time.LocalDateTime;
-import java.util.Objects;
 import java.util.Scanner;
 
 public class DemoATM {
+    private static final String USERNAME = "techmaster";
+    private static final String PASSWORD = "hoclacoviec";
+    private static int balance = 10000000;
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        String username = "techmaster";
-        String password = "hoclacoviec";
-        int balance = 10000000;
-        System.out.print("Nhap username: ");
-        String usename1 = scanner.nextLine();
-        System.out.print("Nhap vao password: ");
-        String password1= scanner.nextLine();
-        String answer;
-        //Quy tac dat ten bien : techmasterSchool
-        //class : Tu tieng anh co nghia , va la danh tu, TechmasterSchool
-        //packgae: viet thuon g het hoac cach nhau bang _ techmaster_service
-        if(usename1.equals(username)&&password1.equals(password)){
+
+        if (authenticateUser(scanner)) {
+            String answer;
             do {
+                showMenu();
+                int choice = getValidChoice(scanner);
+                handleUserChoice(scanner, choice);
 
-                System.out.println("Moi ban chon chuc nang!");
-                System.out.println("Chuc nang 1: xem thong tin TK ");
-                System.out.println("Chuc nang 2: Rut tien ");
-                int choose= Integer.parseInt(scanner.nextLine());
-
-                switch (choose){
-                    case 1:
-                        System.out.println("usename: "+usename1+" password: "+password1+"balance: "+balance);
-                        break;
-                    case 2:
-                        System.out.print("Nhap vao so tien muon rut: ");
-                        int money = Integer.parseInt(scanner.nextLine());
-                        if(money<=balance) {
-                            System.out.println("Ban da rut "+money+"vnd vao luc: " + LocalDateTime.now());
-                            balance=balance-money;
-                        }else {
-                            System.out.println("So tien trong TK khong du!");
-                        }
-                        break;
-                    default:
-                        System.out.println("Khong co luc chon nay, moi ban nhap lai");
-                }
-                        System.out.println("Ban co muon tiep tuc ?(Y/N)");
-                        answer = scanner.nextLine();
-            }while(answer.equals("Y"));
-        }else {
+                answer = getYesNoInput(scanner, "Ban co muon tiep tuc? (Y/N): ");
+            } while (answer.equalsIgnoreCase("Y"));
+        } else {
             System.out.println("Tai khoan khong ton tai");
         }
+    }
 
+    private static boolean authenticateUser(Scanner scanner) {
+        System.out.print("Nhap username: ");
+        String inputUsername = scanner.nextLine().trim();
+        System.out.print("Nhap vao password: ");
+        String inputPassword = scanner.nextLine().trim();
 
+        return inputUsername.equals(USERNAME) && inputPassword.equals(PASSWORD);
+    }
+
+    private static void showMenu() {
+        System.out.println("Moi ban chon chuc nang!");
+        System.out.println("1: Xem thong tin TK");
+        System.out.println("2: Rut tien");
+    }
+
+    private static int getValidChoice(Scanner scanner) {
+        int choice;
+        while (true) {
+            try {
+                System.out.print("Lua chon cua ban: ");
+                choice = Integer.parseInt(scanner.nextLine().trim());
+                if (choice == 1 || choice == 2) {
+                    break;
+                } else {
+                    System.out.println("Lua chon khong hop le, vui long chon 1 hoac 2.");
+                }
+            } catch (NumberFormatException e) {
+                System.out.println("Nhap so hop le!");
+            }
+        }
+        return choice;
+    }
+
+    private static void handleUserChoice(Scanner scanner, int choice) {
+        switch (choice) {
+            case 1:
+                showAccountInfo();
+                break;
+            case 2:
+                withdrawMoney(scanner);
+                break;
+            default:
+                System.out.println("Lua chon khong hop le!");
+        }
+    }
+
+    private static void showAccountInfo() {
+        System.out.println("Username: " + USERNAME + ", Balance: " + balance + " VND");
+    }
+
+    private static void withdrawMoney(Scanner scanner) {
+        while (true) {
+            try {
+                System.out.print("Nhap vao so tien muon rut: ");
+                int money = Integer.parseInt(scanner.nextLine().trim());
+                if (money <= balance ||money<0 ) {
+                    System.out.println("Ban da rut " + money + " VND vao luc: " + LocalDateTime.now());
+                    balance -= money;
+                    break;
+                } else {
+                    System.out.println("So tien trong TK khong du!");
+                }
+            } catch (NumberFormatException e) {
+                System.out.println("Nhap so tien hop le!");
+            }
+        }
+    }
+
+    private static String getYesNoInput(Scanner scanner, String message) {
+        String input;
+        while (true) {
+            System.out.print(message);
+            input = scanner.nextLine().trim();
+            if (input.equalsIgnoreCase("Y") || input.equalsIgnoreCase("N")) {
+                break;
+            } else {
+                System.out.println("Vui long nhap Y hoac N.");
+            }
+        }
+        return input;
     }
 }
+
+
