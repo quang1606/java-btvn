@@ -2,7 +2,7 @@ import java.time.LocalDateTime;
 import java.util.Scanner;
 
 public class Main {
-    // Tạo đối tượng Account với username, password và balance mặc định
+
     private static final Account account = new Account("techmaster", "hoclacoviec", 10000000);
 
     public static void main(String[] args) {
@@ -28,7 +28,7 @@ public class Main {
         System.out.print("Nhap vao password: ");
         String inputPassword = scanner.nextLine().trim();
 
-        // Sử dụng getter để lấy giá trị từ đối tượng account
+
         return inputUsername.equals(account.getUsename()) && inputPassword.equals(account.getPassword());
     }
 
@@ -70,7 +70,7 @@ public class Main {
     }
 
     private static void showAccountInfo() {
-        // Sử dụng getter để lấy giá trị từ đối tượng account
+
         System.out.println("Username: " + account.getUsename() + ", Balance: " + account.getBalance() + " VND");
     }
 
