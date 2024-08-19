@@ -71,7 +71,7 @@ public class Main {
 
     private static void showAccountInfo() {
 
-        System.out.println("Username: " + account.getUsename() + ", Balance: " + account.getBalance() + " VND");
+        System.out.println("Username: " + account.getUsename() +"Pasword: "+account.getPassword()+ ", Balance: " + account.getBalance() + " VND");
     }
 
     private static void withdrawMoney(Scanner scanner) {
