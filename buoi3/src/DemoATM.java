@@ -2,6 +2,7 @@ import java.time.LocalDateTime;
 import java.util.Scanner;
 
 public class DemoATM {
+
     private static final String USERNAME = "techmaster";
     private static final String PASSWORD = "hoclacoviec";
     private static int balance = 10000000;
@@ -13,10 +14,11 @@ public class DemoATM {
             String answer;
             do {
                 showMenu();
-                int choice = getValidChoice(scanner);
+                int choice = Integer.parseInt(scanner.nextLine());
                 handleUserChoice(scanner, choice);
 
-                answer = getYesNoInput(scanner, "Ban co muon tiep tuc? (Y/N): ");
+                System.out.println("Ban co muon tiep tuc ? (Y/N)");
+                answer = scanner.nextLine();
             } while (answer.equalsIgnoreCase("Y"));
         } else {
             System.out.println("Tai khoan khong ton tai");
@@ -25,9 +27,9 @@ public class DemoATM {
 
     private static boolean authenticateUser(Scanner scanner) {
         System.out.print("Nhap username: ");
-        String inputUsername = scanner.nextLine().trim();
+        String inputUsername = scanner.nextLine();
         System.out.print("Nhap vao password: ");
-        String inputPassword = scanner.nextLine().trim();
+        String inputPassword = scanner.nextLine();
 
         return inputUsername.equals(USERNAME) && inputPassword.equals(PASSWORD);
     }
@@ -36,24 +38,6 @@ public class DemoATM {
         System.out.println("Moi ban chon chuc nang!");
         System.out.println("1: Xem thong tin TK");
         System.out.println("2: Rut tien");
-    }
-
-    private static int getValidChoice(Scanner scanner) {
-        int choice;
-        while (true) {
-            try {
-                System.out.print("Lua chon cua ban: ");
-                choice = Integer.parseInt(scanner.nextLine().trim());
-                if (choice == 1 || choice == 2) {
-                    break;
-                } else {
-                    System.out.println("Lua chon khong hop le, vui long chon 1 hoac 2.");
-                }
-            } catch (NumberFormatException e) {
-                System.out.println("Nhap so hop le!");
-            }
-        }
-        return choice;
     }
 
     private static void handleUserChoice(Scanner scanner, int choice) {
@@ -65,7 +49,7 @@ public class DemoATM {
                 withdrawMoney(scanner);
                 break;
             default:
-                System.out.println("Lua chon khong hop le!");
+                System.out.println("Khong co luc chon nay, moi ban nhap lai");
         }
     }
 
@@ -74,35 +58,14 @@ public class DemoATM {
     }
 
     private static void withdrawMoney(Scanner scanner) {
-        while (true) {
-            try {
-                System.out.print("Nhap vao so tien muon rut: ");
-                int money = Integer.parseInt(scanner.nextLine().trim());
-                if (money <= balance ||money<0 ) {
-                    System.out.println("Ban da rut " + money + " VND vao luc: " + LocalDateTime.now());
-                    balance -= money;
-                    break;
-                } else {
-                    System.out.println("So tien trong TK khong du!");
-                }
-            } catch (NumberFormatException e) {
-                System.out.println("Nhap so tien hop le!");
-            }
+        System.out.print("Nhap vao so tien muon rut: ");
+        int money = Integer.parseInt(scanner.nextLine());
+        if (money <= balance && money>0) {
+            System.out.println("Ban da rut " + money + " VND vao luc: " + LocalDateTime.now());
+            balance -= money;
+        } else {
+            System.out.println("So tien rut khong hop le!");
         }
-    }
-
-    private static String getYesNoInput(Scanner scanner, String message) {
-        String input;
-        while (true) {
-            System.out.print(message);
-            input = scanner.nextLine().trim();
-            if (input.equalsIgnoreCase("Y") || input.equalsIgnoreCase("N")) {
-                break;
-            } else {
-                System.out.println("Vui long nhap Y hoac N.");
-            }
-        }
-        return input;
     }
 }
 
