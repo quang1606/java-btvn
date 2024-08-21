@@ -6,7 +6,7 @@ public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         HinhChuNhat hinhChuNhat = new HinhChuNhat();
-        double length, width=0 ;
+        double length, width ;
         do {
             System.out.println("Nhap vao chieu dai: ");
             length = Double.parseDouble(scanner.nextLine());
