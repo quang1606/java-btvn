@@ -7,14 +7,16 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
         HinhChuNhat hinhChuNhat = new HinhChuNhat();
         double length, width ;
-        do {
-            System.out.println("Nhap vao chieu dai: ");
-            length = Double.parseDouble(scanner.nextLine());
-            if (length <= 0) {
-                System.out.println("Chieu dai phai lon hon 0. Moi ban nhap lai.");
 
-            }
-        } while (length <= 0);
+        do {
+            do {
+                System.out.println("Nhap vao chieu dai: ");
+                length = Double.parseDouble(scanner.nextLine());
+                if (length <= 0) {
+                    System.out.println("Chieu dai phai lon hon 0. Moi ban nhap lai.");
+
+                }
+            } while (length <= 0);
             do {
                 System.out.println("Nhap vao chieu rong: ");
                 width = Double.parseDouble(scanner.nextLine());
@@ -22,6 +24,11 @@ public class Main {
                     System.out.println("Chieu rong phai lon hon 0. Moi ban nhap lai.");
                 }
             } while (width <= 0);
+            if(length<=width){
+                System.out.println("Nhap chieu dai phai lon hon chieu rong!");
+            }
+        }while (length<=width);
+
 
 
 
