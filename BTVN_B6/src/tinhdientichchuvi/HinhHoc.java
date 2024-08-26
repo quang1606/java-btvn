@@ -5,6 +5,7 @@ public class HinhHoc {
         return a*b;
     }
     public double chuVi(double a, double b){
+
         return (a+b)*2;
     }
 }
