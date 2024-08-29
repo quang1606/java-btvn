@@ -14,8 +14,9 @@ public class SommomRiftService {
    FigureService figureService = new FigureService();
    NameService nameService = new NameService();
    public SommonRift songService (Scanner scanner){
-       LocalDateTime time = LocalDateTime.now();
-       System.out.println(" Thoi gian tran dau: "+time);
+
+       System.out.println(" Thoi gian tran dau: ");
+       String time =scanner.nextLine();
 
 
        List<Figure>figures =new ArrayList<>();
@@ -33,7 +34,7 @@ public class SommomRiftService {
            }
        }
 
-      return new SommonRift(names,figures);
+      return new SommonRift(figures,time,names);
    }
 
 
