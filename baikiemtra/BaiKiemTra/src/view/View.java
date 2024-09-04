@@ -55,7 +55,7 @@ public class View {
                     }
                     break;
                 case 2:
-                    User user = userService.user(scanner,users);
+                    User user = userService.register(scanner,users);
                     users.add(user);
 
                     break;

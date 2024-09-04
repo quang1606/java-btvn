@@ -9,7 +9,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class UserService {
-    public User user(Scanner scanner, List<User> users) {
+    public User register(Scanner scanner, List<User> users) {
         String useName;
         do {
             System.out.println("Nhập usename: ");
