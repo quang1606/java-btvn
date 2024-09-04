@@ -25,11 +25,4 @@ public class LogGin {
         this.passWord = passWord;
     }
 
-    @Override
-    public String toString() {
-        return "LogGin{" +
-                "useName='" + useName + '\'' +
-                ", passWord='" + passWord + '\'' +
-                '}';
-    }
 }

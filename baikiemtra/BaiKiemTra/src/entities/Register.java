@@ -20,10 +20,5 @@ public class Register extends LogGin{
         this.email = email;
     }
 
-    @Override
-    public String toString() {
-        return "Register{" +
-                "email='" + email + '\'' +
-                '}';
-    }
+
 }
