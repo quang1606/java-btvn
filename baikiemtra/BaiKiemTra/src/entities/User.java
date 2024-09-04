@@ -1,12 +1,14 @@
 package entities;
 
-public class LogGin {
+public class User {
     private String useName;
     private String passWord;
+    private String email;
 
-    public LogGin(String useName, String passWord) {
+    public User(String useName, String passWord, String email) {
         this.useName = useName;
         this.passWord = passWord;
+        this.email = email;
     }
 
     public String getUseName() {
@@ -25,4 +27,11 @@ public class LogGin {
         this.passWord = passWord;
     }
 
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
 }

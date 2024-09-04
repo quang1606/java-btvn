@@ -1,17 +1,17 @@
 package view;
 
-import entities.LogGin;
-import entities.Register;
-import service.LogGinService;
-import service.RegisterService;
+import entities.User;
+import service.UserService;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 public class View {
-    private LogGin currentLogGin;
-    RegisterService registerService = new RegisterService();
-    LogGinService logGinService = new LogGinService();
+    private User currentLogGin;
+  List<User> users = new ArrayList<>();
+
+    UserService userService = new UserService();
     public void displayMenu(){
         System.out.println("1 - Đăng nhập");
         System.out.println("2 - Đăng ký ");
@@ -27,14 +27,14 @@ public class View {
         System.out.println("4 - Đăng xuất");
         System.out.println("0 - Thoát chương trình");
     }
-    private LogGin handleLogin(Scanner scanner, List<Register> registers) {
-        LogGin logGin = logGinService.logGin(scanner);
-        if (registerService.useNameExists(logGin.getUseName(),registers)) {
-            if (logGinService.checkPassword(registers, logGin)) {
+    private User handleLogin(Scanner scanner,  List<User> users) {
+        User logGin = userService.logGin(scanner);
+        if (userService.useNameExists(logGin.getUseName(),users)) {
+            if (userService.checkPassword(users, logGin)) {
                 return logGin;
             } else {
                 System.out.println("Sai mật khẩu!");
-                selectDisplayMenuLogGin(scanner, registers, logGin);
+                selectDisplayMenuLogGin(scanner, users, logGin);
             }
         } else {
             System.out.println("Kiểm tra lại username");
@@ -42,22 +42,22 @@ public class View {
         return null;
     }
 
-
-    public void selectMenu(Scanner scanner, List<Register> registers) {
+    public void selectMenu(Scanner scanner, List<User> users) {
         do {
             displayMenu();
             int choice = Integer.parseInt(scanner.nextLine());
             switch (choice) {
                 case 1:
-                    currentLogGin = handleLogin(scanner, registers);
+                    currentLogGin = handleLogin(scanner, users);
                     if (currentLogGin != null) {
                         System.out.println("Chào mừng bạn " + currentLogGin.getUseName() + ", bạn có thể thực hiện công việc sau:");
-                        selectDisplayMenuLogInSuccessfully(scanner,registers);
+                        selectDisplayMenuLogInSuccessfully(scanner,users);
                     }
                     break;
                 case 2:
-                    Register register = registerService.register(scanner, registers);
-                    registers.add(register);
+                    User user = userService.user(scanner,users);
+                    users.add(user);
+
                     break;
                 default:
                     System.out.println("Lựa chọn không hợp lệ. Vui lòng thử lại.");
@@ -65,20 +65,20 @@ public class View {
         } while (true);
     }
 
-    public void selectDisplayMenuLogGin(Scanner scanner, List<Register> registers, LogGin logGin) {
+    public void selectDisplayMenuLogGin(Scanner scanner, List<User> users, User logGin) {
         displayMenuLogGin();
         int choice = Integer.parseInt(scanner.nextLine());
         switch (choice) {
             case 1:
-                    currentLogGin = handleLogin(scanner, registers);
+                    currentLogGin = handleLogin(scanner, users);
                 if (currentLogGin != null) {
                     System.out.println("Chào mừng bạn " + currentLogGin.getUseName() + ", bạn có thể thực hiện công việc sau:");
-                    selectDisplayMenuLogInSuccessfully(scanner,registers);
+                    selectDisplayMenuLogInSuccessfully(scanner,users);
                 }
                 break;
             case 2:
 
-                if(logGinService.forgetPassword(scanner, logGin, registers)) {
+                if(userService.forgetPassword(scanner, logGin, users)) {
                     System.out.println("Moi ban chon!");
                 } else {
                     System.out.println("Chưa tồn tại tài khoản !");
@@ -90,32 +90,32 @@ public class View {
     }
 
 
-    public void selectDisplayMenuLogInSuccessfully(Scanner scanner, List<Register>registers){
+    public void selectDisplayMenuLogInSuccessfully(Scanner scanner,  List<User> users){
         do {
             displayMenuLogInSuccessfully();
             int choice=Integer.parseInt(scanner.nextLine());
 
             switch (choice){
                 case 1:
-                    if (logGinService.useNameNew(scanner,currentLogGin,registers)){
+                    if (userService.useNameNew(scanner,currentLogGin,users)){
                         System.out.println("Đổi  useName thành công!");
 
                     }
                     break;
                 case 2:
-                    if (logGinService.emailNew(scanner,currentLogGin,registers)){
+                    if (userService.emailNew(scanner,currentLogGin,users)){
                         System.out.println("Đổi email thành công!");
                     }
                     break;
                 case 3:
-                    if (logGinService.passWordNew(scanner,currentLogGin,registers)){
+                    if (userService.passWordNew(scanner,currentLogGin,users)){
                         System.out.println("Đổi  password thành công");
                     }
                     break;
                 case 4:
                     currentLogGin = null;
                     System.out.println("Bạn đã đăng xuất thành công.");
-                    selectMenu(scanner,registers);
+                    selectMenu(scanner,users);
                     break;
                 case 0:
                     System.exit(0);
