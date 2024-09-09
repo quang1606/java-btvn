@@ -14,12 +14,12 @@ public class UserService {
         do {
             System.out.println("Nhập usename: ");
             useName = scanner.nextLine();
-            if(useNameExists(useName,users)){
+            if (useNameExists(useName, users)) {
                 System.out.println("UseName đã tồn tại!");
-            }else {
+            } else {
                 break;
             }
-        }while (true);
+        } while (true);
         String email;
         do {
             System.out.println("Nhập email: ");
@@ -45,27 +45,30 @@ public class UserService {
         return new User(useName, passWord, email);
     }
 
-    public static boolean isValidEmail (String email){
-        Pattern pattern =Pattern.compile(Constant.EMAIL_REGEX);
+    public static boolean isValidEmail(String email) {
+        Pattern pattern = Pattern.compile(Constant.EMAIL_REGEX);
         Matcher matcher = pattern.matcher(email);
         return matcher.matches();
     }
-    public boolean useNameExists(String useName, List<User>users){
-        for  (User user : users){
-            if(user.getUseName().equals(useName)){
+
+    public boolean useNameExists(String useName, List<User> users) {
+        for (User user : users) {
+            if (user.getUseName().equals(useName)) {
                 return true;
             }
         }
         return false;
     }
-    public boolean emailExists (String email,List<User>users){
-        for(User user : users){
-            if(user.getEmail().equals(email)){
+
+    public boolean emailExists(String email, List<User> users) {
+        for (User user : users) {
+            if (user.getEmail().equals(email)) {
                 return true;
             }
         }
         return false;
     }
+
     public boolean isSpecialCharacter(char ch) {
         return !Character.isLetterOrDigit(ch);
     }
@@ -89,12 +92,14 @@ public class UserService {
 
         return false;
     }
-    public User logGin(Scanner scanner){
+
+    public User logGin(Scanner scanner) {
         System.out.println("Nhập usename:");
         String useName = scanner.nextLine();
         System.out.println("Nhập password: ");
+
         String passWord = scanner.nextLine();
-        return new User(useName,passWord,null);
+        return new User(useName, passWord, null);
     }
 
     public boolean checkPassword(List<User> users, User logGin) {
@@ -105,6 +110,7 @@ public class UserService {
         }
         return false;
     }
+
     private User findRegisterByUsername(List<User> users, User logGin) {
         for (User user : users) {
             if (user.getUseName().equals(logGin.getUseName())) {
@@ -114,7 +120,7 @@ public class UserService {
         return null;
     }
 
-    public boolean forgetPassword(Scanner scanner,User logGin, List<User> users) {
+    public boolean forgetPassword(Scanner scanner, User logGin, List<User> users) {
         User user = findRegisterByUsername(users, logGin);
         System.out.println("Nhập email để xác nhận tài khoản: ");
         String email = scanner.nextLine();
@@ -136,24 +142,24 @@ public class UserService {
         return true;
     }
 
-    public boolean useNameNew(Scanner scanner,User logGin, List<User> users){
+    public boolean useNameNew(Scanner scanner, User logGin, List<User> users) {
         User user = findRegisterByUsername(users, logGin);
         String useName;
         do {
             System.out.println("Nhập vào usename: ");
             useName = scanner.nextLine();
-            if(useNameExists(useName,users)){
+            if (useNameExists(useName, users)) {
                 System.out.println("usename đã tồn tại");
-            }else {
+            } else {
                 user.setUseName(useName);
                 logGin.setUseName(useName);
                 break;
             }
-        }while (true);
+        } while (true);
         return true;
     }
 
-    public boolean emailNew(Scanner scanner,User logGin, List<User> users){
+    public boolean emailNew(Scanner scanner, User logGin, List<User> users) {
         User user = findRegisterByUsername(users, logGin);
         String email;
         do {
@@ -163,15 +169,15 @@ public class UserService {
                 System.out.println("Email không hợp lệ!");
             } else if (emailExists(email, users)) {
                 System.out.println("Email đã tồn tại!");
-            }else {
+            } else {
                 user.setEmail(email);
                 break;
             }
-        }while (true);
+        } while (true);
         return true;
     }
 
-    public boolean passWordNew(Scanner scanner, User logGin, List<User> users){
+    public boolean passWordNew(Scanner scanner, User logGin, List<User> users) {
         User user = findRegisterByUsername(users, logGin);
         String passWord;
         do {
@@ -185,7 +191,7 @@ public class UserService {
                 break;
             }
 
-        }while (true);
+        } while (true);
         return true;
     }
 }

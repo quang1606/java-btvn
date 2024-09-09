@@ -9,7 +9,6 @@ import java.util.Scanner;
 
 public class View {
     private User currentLogGin;
-  List<User> users = new ArrayList<>();
 
     UserService userService = new UserService();
     public void displayMenu(){
