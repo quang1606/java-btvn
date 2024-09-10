@@ -25,6 +25,7 @@ public class Menu {
                 3 - Xoa nhan vien
                 4 - Cap nhat thong tin nhan vien
                 5 - Tim nhan vien theo luong
+                6 - Top 5 luong cao nhat
                 """);
         System.out.println("Mời b lựa chọn:");
 
@@ -46,8 +47,13 @@ public class Menu {
                  break;
              case 4:
                  staffService.updateStaff(scanner);
+                 break;
              case 5:
                  staffService.searchSalary(scanner);
+                 break;
+             case 6:
+                 staffService.saveSortedStaffToAnotherArray();
+                 break;
          }
 
      }while (true);
