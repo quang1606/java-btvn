@@ -10,6 +10,10 @@ public class MarketingStaff extends  AdministrativeStaff{
         this.sales = sales;
     }
 
+    public MarketingStaff() {
+        super();
+    }
+
     public double getCommissionRate() {
         return commissionRate;
     }
@@ -28,6 +32,6 @@ public class MarketingStaff extends  AdministrativeStaff{
 
     @Override
     public String toString() {
-        return "ID: "+getId()+" Ho ten: "+getFullName()+" Luong: "+getSalary()+"Doanh so: "+getSales()+" hoa hong: "+getCommissionRate()+"Thu nhap: "+getIncome()+" Thue thu nhap: "+getIncomeTax();
+        return " Ho ten: "+getFullName()+" Luong: "+getSalary()+"Doanh so: "+getSales()+" hoa hong: "+getCommissionRate()+"Thu nhap: "+getIncome()+" Thue thu nhap: "+getIncomeTax();
     }
 }

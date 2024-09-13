@@ -43,11 +43,10 @@ public class Menu {
 
                     break;
                 case 2:
-                    workerService.salaryIncrease(scanner,worker);
-
+                    workerService.StatusUp(scanner);
                     break;
                 case 3:
-                    workerService.salaryReduction(scanner,worker);
+                    workerService.StatusDown(scanner);
                     break;
                 case 4:
                     workerService.outPutword();

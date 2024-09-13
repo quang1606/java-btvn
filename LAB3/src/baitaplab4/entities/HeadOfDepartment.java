@@ -9,6 +9,10 @@ public class HeadOfDepartment extends AdministrativeStaff{
         this.responsibilitySalary = responsibilitySalary;
     }
 
+    public HeadOfDepartment() {
+
+    }
+
     public double getResponsibilitySalary() {
         return responsibilitySalary;
     }
@@ -19,6 +23,6 @@ public class HeadOfDepartment extends AdministrativeStaff{
 
     @Override
     public String toString() {
-        return "ID: "+getId()+" Ho ten: "+getFullName()+" Luong: "+getSalary()+"Luong trach nhiem: "+getResponsibilitySalary() +"Thu nhap: "+getIncome()+" Thue thu nhap: "+getIncomeTax();
+        return " Ho ten: "+getFullName()+" Luong: "+getSalary()+"Luong trach nhiem: "+getResponsibilitySalary() +"Thu nhap: "+getIncome()+" Thue thu nhap: "+getIncomeTax();
     }
 }

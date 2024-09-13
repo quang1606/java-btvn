@@ -1,8 +1,7 @@
 package baitaplab4.entities;
 
 public class AdministrativeStaff {
-    private static int countID;
-    private int id;
+  ;
     private String fullName;
     private double salary;
     private double income;
@@ -14,7 +13,11 @@ public class AdministrativeStaff {
         this.salary = salary;
         this.income = income;
         this.incomeTax = incomeTax;
-        this.id = ++countID;
+
+    }
+
+    public AdministrativeStaff() {
+
     }
 
     public double getIncome() {
@@ -33,21 +36,9 @@ public class AdministrativeStaff {
         this.incomeTax = incomeTax;
     }
 
-    public static int getCountID() {
-        return countID;
-    }
 
-    public static void setCountID(int countID) {
-        AdministrativeStaff.countID = countID;
-    }
 
-    public int getId() {
-        return id;
-    }
 
-    public void setId(int id) {
-        this.id = id;
-    }
 
     public String getFullName() {
         return fullName;
@@ -67,6 +58,6 @@ public class AdministrativeStaff {
 
     @Override
     public String toString() {
-        return "ID: "+id+" Ho ten: "+getFullName()+" Luong: "+getSalary()+" Thu nhap: "+getIncome()+" Thue thu nhap: "+getIncomeTax();
+        return " Ho ten: "+getFullName()+" Luong: "+getSalary()+" Thu nhap: "+getIncome()+" Thue thu nhap: "+getIncomeTax();
     }
 }

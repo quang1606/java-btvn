@@ -26,6 +26,8 @@ public class Menu {
                 4 - Cap nhat thong tin nhan vien
                 5 - Tim nhan vien theo luong
                 6 - Top 5 luong cao nhat
+                7 - Xap xep nhan vien theo ten va thu nhap
+                8 - Thoat khoi chuong trinh
                 """);
         System.out.println("Mời b lựa chọn:");
 
@@ -54,6 +56,12 @@ public class Menu {
              case 6:
                  staffService.saveSortedStaffToAnotherArray();
                  break;
+             case 7:
+                 staffService.saveSortedStaffToAnotherArray1();
+             case 8:
+                 System.exit(0);
+             default:
+                 System.out.println("Chuc nang khong hop le!");
          }
 
      }while (true);

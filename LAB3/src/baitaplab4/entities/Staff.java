@@ -5,16 +5,17 @@ public class Staff {
     private HeadOfDepartment headOfDepartment;
     private MarketingStaff marketingStaff;
     private Position position;
+    private static int countID;
+    private int id;
+
 
     public Staff(AdministrativeStaff administrativeStaff, MarketingStaff marketingStaff, HeadOfDepartment headOfDepartment, Position position) {
         this.administrativeStaff = administrativeStaff;
+        this.id = ++countID;
         this.marketingStaff = marketingStaff;
         this.headOfDepartment = headOfDepartment;
         this.position = position;
     }
-
-
-
 
     public AdministrativeStaff getAdministrativeStaff() {
         return administrativeStaff;
@@ -48,9 +49,27 @@ public class Staff {
         this.headOfDepartment = headOfDepartment;
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public static int getCountID() {
+        return countID;
+    }
+
+    public static void setCountID(int countID) {
+        Staff.countID = countID;
+    }
+
+
     @Override
     public String toString() {
-        String result = "Chức vụ: " + getPosition();
+
+        String result ="ID: "+getId()+ " Chức vụ: " + getPosition();
 
         if (getAdministrativeStaff() != null) {
             result += " " + getAdministrativeStaff();
