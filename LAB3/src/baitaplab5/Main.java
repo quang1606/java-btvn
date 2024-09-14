@@ -14,7 +14,7 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
         PetService petService =new PetService();
         List<Pet> pets = new ArrayList<>();
-        List<Pet>petList = new ArrayList<>();
+
         pets.add(new Pet("Khong co", Type.CAT, "xinh xan", Sex.FEMALE, 3, "meo anh", "loki"));
         pets.add(new Pet("Khong co", Type.DOG, "thong minh", Sex.MALE, 2, "cho shiba", "shiro"));
         pets.add(new Pet("Khong co", Type.CAT, "de thuong", Sex.FEMALE, 1, "meo ba tu", "mimi"));
@@ -28,7 +28,7 @@ public class Main {
         pets.add(new Pet("Khong co", Type.CAT, "lanh loi", Sex.FEMALE, 4, "meo vien", "tiger"));
 
 
-        petService.pet(scanner,pets,petList);
+        petService.pet(scanner,pets);
 
     }
 

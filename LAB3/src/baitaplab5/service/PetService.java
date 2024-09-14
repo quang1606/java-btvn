@@ -64,7 +64,8 @@ public class PetService {
             System.out.println(pet);
         }
     }
-    private void search (Type type, Sex sex, List<Pet> pets, List<Pet> petList){
+    private void search (Type type, Sex sex, List<Pet> pets){
+        List<Pet>petList = new ArrayList<>();
         for (Pet pet : pets){
             if(!pet.getSex().equals(sex)&& pet.getType().equals(type)){
                petList.add(pet);
